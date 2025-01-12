@@ -1,0 +1,52 @@
+<div id="reports" class="content-section active">
+    <h2>Reportes de Alquiler de Autos</h2>
+    <p>Aquí puedes ver y descargar diferentes tipos de reportes relacionados con el alquiler de autos.</p>
+
+    <div class="mb-3">
+        <label for="reportType" class="form-label">Selecciona el Tipo de Reporte</label>
+        <select class="form-select" id="reportType">
+            <option value="vehiculos">Reporte de Vehículos Alquilados</option>
+            <option value="ingresos">Reporte de Ingresos</option>
+            <option value="estadisticas">Estadísticas de Uso</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary mb-3" onclick="generateReport()">Generar Reporte</button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo de Reporte</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="reportTableBody">
+            <tr>
+                <td>2024-09-01</td>
+                <td>Vehículos Alquilados</td>
+                <td>Listado de vehículos alquilados en el mes de agosto.</td>
+                <td>
+                    <button class="btn btn-success btn-sm">Descargar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2024-09-10</td>
+                <td>Ingresos</td>
+                <td>Reporte de ingresos generados por alquileres durante el último mes.</td>
+                <td>
+                    <button class="btn btn-success btn-sm">Descargar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2024-09-20</td>
+                <td>Estadísticas de Uso</td>
+                <td>Informe sobre la frecuencia de alquiler de cada vehículo.</td>
+                <td>
+                    <button class="btn btn-success btn-sm">Descargar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

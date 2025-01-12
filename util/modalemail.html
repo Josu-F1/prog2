@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirma tu Correo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #444;
+        }
+
+        .mensaje {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .mensaje h1 {
+            font-size: 2rem;
+            color: #0078d7;
+            margin-bottom: 20px;
+        }
+
+        .mensaje p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .code {
+            display: flex;
+            justify-content: space-evenly;
+            background: linear-gradient(135deg, #dce7f2, #c8daf1);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #0078d7;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .code span {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0078d7;
+            padding: 10px;
+            width: 3rem;
+            text-align: center;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mensaje" id="mensaje">
+        <h1>Confirma tu Correo Electrónico</h1>
+        <p>Introduce el siguiente código en la página para completar tu registro:</p>
+        <div class="code">
+            <span><span id="digit-1"></span></span>
+            <span><span id="digit-2"></span></span>
+            <span><span id="digit-3"></span></span>
+            <span><span id="digit-4"></span></span>
+        </div>
+        <div class="footer">
+            Si tienes algún problema, contacta con nuestro soporte.
+        </div>
+    </div>
+</body>
+
+</html>

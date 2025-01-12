@@ -1,0 +1,112 @@
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(180deg, #2c3e50, #4b636e); 
+    color: #ffffff;
+    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar:hover {
+    background: linear-gradient(180deg, #2c3e50, #34495e); 
+}
+
+.sidebar h4 {
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a {
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    margin: 10px 0;
+    display: block;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    color: #f1c40f;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 30px;
+}
+
+.sidebar a::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #f1c40f;
+    border-radius: 50%;
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+.sidebar a:hover::before {
+    transform: translateY(-50%) scale(1);
+}
+
+
+.main-content {
+    padding: 40px;
+    
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        height: auto;
+        background: linear-gradient(180deg, #007bff, #6c757d);
+        box-shadow: none;
+    }
+
+    .sidebar h4 {
+        padding: 15px 0;
+    }
+
+    .sidebar a {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .sidebar a:hover {
+        padding-left: 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}

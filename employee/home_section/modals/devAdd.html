@@ -1,0 +1,131 @@
+
+  <!-- Modal -->
+  <div class="modal fade" id="devolucionModal" tabindex="-1" aria-labelledby="devolucionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form id="formDevolucion">
+          <div class="modal-header">
+            <h5 class="modal-title" id="devolucionModalLabel">Registrar Devolución</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="mb-3">
+            <label for="alquilerId" class="form-label">ID del Alquiler</label>
+            <input type="number" class="form-control" id="alquilerId" name="alquilerId" required>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                <input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+              </div>
+            <!-- Fecha de Devolución -->
+            <div class="mb-3">
+              <label for="fechaDevolucion" class="form-label">Fecha de Devolución</label>
+              <input type="text" class="form-control" id="fechaDevolucion" name="fechaDevolucion" required>
+            </div>
+  
+            <!-- Estado del Vehículo -->
+            <div class="mb-3">
+              <label for="estadoVehiculo" class="form-label">Estado del Vehículo</label>
+              <select class="form-select" id="estadoVehiculo" name="estadoVehiculo">
+                <option value="Excelente">Excelente</option>
+                <option value="Bueno">Bueno</option>
+                <option value="Regular">Regular</option>
+                <option value="Malo">Malo</option>
+              </select>
+            </div>
+  
+            <!-- Limpieza -->
+            <div class="mb-3">
+              <label for="limpieza" class="form-label">Estado de Limpieza</label>
+              <select class="form-select" id="limpieza" name="limpieza">
+                <option value="Limpio">Limpio</option>
+                <option value="Sucia">Sucia</option>
+              </select>
+            </div>
+  
+            <!-- Nivel de Combustible -->
+            <div class="mb-3">
+              <label for="nivelCombustible" class="form-label">Nivel de Combustible</label>
+              <select class="form-select" id="nivelCombustible" name="nivelCombustible">
+                <option value="Lleno">Lleno</option>
+                <option value="3/4">3/4</option>
+                <option value="1/2">1/2</option>
+                <option value="1/4">1/4</option>
+                <option value="Vacío">Vacío</option>
+              </select>
+            </div>
+  
+            <!-- Kilometraje Devuelto 
+            <div class="mb-3">
+              <label for="kilometrajeDevuelto" class="form-label">Kilometraje Devuelto</label>
+              <input type="number" class="form-control" id="kilometrajeDevuelto" name="kilometrajeDevuelto" required>
+            </div>
+            -->
+            <!-- Costos -->
+            <div class="mb-3">
+              <label for="costoLimpieza" class="form-label">Costo por Limpieza</label>
+              <select class="form-select" id="costoLimpieza" name="costoLimpieza">
+                <option value="0.00">Sin costo</option>
+                <option value="5.00">$5.00</option>
+                <option value="10.00">$10.00</option>
+                <option value="15.00">$15.00</option>
+                <option value="20.00">$20.00</option>
+                <option value="25.00">$25.00</option>
+                <option value="30.00">$30.00</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="costoDanosLeves" class="form-label">Costo por Daños Leves</label>
+              <select class="form-select" id="costoDanosLeves" name="costoDanosLeves">
+                <option value="0.00">Sin costo</option>
+                <option value="50.00">$50.00</option>
+                <option value="100.00">$100.00</option>
+                <option value="150.00">$150.00</option>
+                <option value="200.00">$200.00</option>
+                <option value="250.00">$250.00</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="costoDanosGraves" class="form-label">Costo por Daños Graves</label>
+              <select class="form-select" id="costoDanosGraves" name="costoDanosGraves">
+                <option value="0.00">Sin costo</option>
+                <option value="200.00">$200.00</option>
+                <option value="400.00">$400.00</option>
+                <option value="600.00">$600.00</option>
+                <option value="800.00">$800.00</option>
+                <option value="1000.00">$1000.00</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="costoCombustible" class="form-label">Costo por Falta de Combustible</label>
+              <select class="form-select" id="costoCombustible" name="costoCombustible">
+                <option value="0.00">Sin costo</option>
+                <option value="5.00">$5.00</option>
+                <option value="10.00">$10.00</option>
+                <option value="20.00">$20.00</option>
+                <option value="30.00">$30.00</option>
+                <option value="60.00">$60.00</option>
+                <option value="90.00">$90.00</option>
+                <option value="100.00">$100.00</option>
+                
+              </select>
+            </div>
+  
+            <!-- Observaciones -->
+            <div class="mb-3">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

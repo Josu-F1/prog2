@@ -1,0 +1,311 @@
+/* Estilos generales para el cuerpo y contenedor */
+body {
+    background-color: #f5f7fa; /* Fondo limpio y moderno */
+    font-family: 'Poppins', sans-serif; /* Tipografía profesional */
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Mantiene padding y border dentro del ancho y alto definidos */
+}
+
+h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Estilos generales para los modales */
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+}
+
+/* Mejora en los campos de entrada */
+.form-control, .form-select, textarea {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus, textarea:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilos de los botones */
+.btn-primary {
+    background-color: #060101;
+    border-color: #edeff2;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+}
+
+.btn-warning {
+    background-color: #deed0d;
+    border: none;
+    color: #212529;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-warning:hover {
+    background-color: #57ffb3;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.text-center button {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.text-center button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el contenedor de las tarjetas de vehículos */
+/* Estilo para el contenedor de las tarjetas de vehículos */
+#cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Aumentar espacio entre tarjetas */
+    justify-content: center;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    background: #f6f3f3;
+    width: 100%; /* Asegura que las tarjetas se adapten al ancho disponible */
+    max-width: 350px; /* Define un ancho mayor para tarjetas */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 350px; /* Aumentar la altura de la imagen */
+    border-bottom: 2px solid #f0f0f0;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 25px; /* Más espacio para contenido */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Texto más grande */
+    font-weight: 600;
+    color: #2a2a2a;
+}
+
+.card-subtitle {
+    font-size: 1.1rem; /* Aumentar subtítulo */
+    margin-bottom: 15px;
+    color: #6c757d;
+}
+
+.card-text {
+    font-size: 1rem; /* Texto más legible */
+    line-height: 1.8;
+    color: #555555;
+}
+
+.card-footer {
+    background-color: #180202;
+    border-top: 1px solid #e9ecef;
+    padding: 20px; /* Más espacio en el pie de tarjeta */
+}
+
+
+/* Estilos generales para la tabla de vehículos */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #212529;
+    color: #ffffff;
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 3px solid #343a40;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.table button {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Estilos del buscador de vehículos */
+#searchVehicle {
+    font-size: 1rem;
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 70%;
+    margin-bottom: 1rem;
+}
+
+#searchVehicle:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Alertas laterales */
+.alerta-lateral {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: auto;
+    max-width: 300px;
+    display: none;
+}
+
+#alertaVehicle {
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    .table {
+        font-size: 0.8rem;
+    }
+
+    .table thead th {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .table td {
+        padding: 0.5rem;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+    .table tbody tr td {
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        border-bottom: none;
+        text-align: left;
+        position: relative;
+    }
+
+    .table tbody tr td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #007bff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-right: 0.5rem;
+    }
+
+    .table button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+

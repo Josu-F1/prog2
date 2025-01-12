@@ -1,0 +1,92 @@
+<div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Vehiculo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="alertaadd" class="alert d-none" role="alert"></div>
+            <div class="modal-body">
+                <form id="formAddVehicle" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="marca" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marca" name="marca" aria-describedby="marcaHelp"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" name="modelo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="matricula" class="form-label">Matricula</label>
+                        <input type="text" class="form-control" id="matricula" name="matricula"
+                            pattern="[A-Z]{3}-[0-9]{3}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_vehiculo" class="form-label">Tipo de vehiculo</label>
+                        <select id="tipo_vehiculo" name="tipo_vehiculo" class="form-select" required>
+                            <option value="Vehiculo Ligero">Vehiculo Ligero</option>
+                            <option value="Furgoneta">Furgoneta</option>
+                            <option value="Vehiculo de Transporte Pesado">Vehiculo de Transporte Pesado</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado del Vehículo</label>
+                        <select id="estado" name="estado" class="form-select" required>
+                            <option value="Premium">Premium</option>
+                            <option value="Confiable">Confiable</option>
+                            <option value="Aceptable">Aceptable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="disponibilidad" class="form-label">Disponibilidad</label>
+                        <select id="disponibilidad" name="disponibilidad" class="form-select" required>
+                            <option value="Disponible">Disponible</option>
+                            <option value="No disponible">No disponible</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="tipo_combustible" class="form-label">Tipo de combustible</label>
+                        <select id="tipo_combustible" name="tipo_combustible" class="form-select" required>
+                            <option value="Electrico">Electrico</option>
+                            <option value="extra">Extra</option>
+                            <option value="super">Super</option>
+                            <option value="diesel">Diesel</option>
+                            
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_transmision" class="form-label">Tipo de transmision</label>
+                        <select id="tipo_transmision" name="tipo_transmision" class="form-select" required>
+                            <option value="automatico">Automatico</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tarifa" class="form-label">Precio por día</label>
+                        <input type="number" class="form-control" id="tarifa" name="tarifa" min="10" step="1"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cilindraje" class="form-label">Cilindraje</label>
+                        <select id="cilindraje" name="cilindraje" class="form-select" required>
+                            <option value="1000 cc">1.0 Litro (1000 cc)</option>
+                            <option value="2000 cc">2.0 Litros (2000 cc)</option>
+                            <option value="3000 cc">3.0 Litros (3000 cc)</option>
+                            <option value="4000 cc">4.0 Litros (4000 cc)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción del Vehículo</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+                        <label for="imagen" class="form-label">Imagen del Vehículo</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar Vehículo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

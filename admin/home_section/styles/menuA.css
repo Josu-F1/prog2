@@ -1,0 +1,69 @@
+/* Navbar general */
+.navbar {
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 0.8rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Links del menú */
+.nav-link {
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover {
+    color: #007bff; /* Azul moderno al pasar el mouse */
+    text-decoration: none;
+}
+
+.nav-link i {
+    font-size: 1rem; /* Tamaño de los íconos */
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover i {
+    color: #0056b3; /* Cambia el color del ícono en hover */
+}
+
+/* Links activos */
+.nav-link.active {
+    color: #007bff;
+    font-weight: 600;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Navbar-toggler */
+.navbar-toggler {
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #4a4a4a;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+/* Espaciado para evitar desbordes */
+.container-fluid {
+
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-link {
+        margin: 0.5rem 0;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+}
