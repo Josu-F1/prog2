@@ -37,38 +37,172 @@ $pdf->SetMargins(15, 15, 15);
 $pdf->AddPage();
 
 // Contenido del PDF
+// Crear el PDF
+$pdf = new TCPDF();
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('FACTURA');
+$pdf->SetTitle('Factura de Alquiler y Devolución');
+$pdf->SetMargins(15, 15, 15);
+$pdf->AddPage();
+
+// Validar y asignar valores predeterminados si las claves no existen
+$data['factura_numero'] = $data['factura_numero'] ?? '0001';
+$data['fecha_emision'] = $data['fecha_emision'] ?? date('Y-m-d');
+
+$extraCharge = rand(30, 70);
+$totalAmount = $data['monto_esperado'] + $extraCharge;
+$totalAmount2 = $data['monto_esperado'] - $extraCharge;
+$additionalAmount = $totalAmount - $data['monto_esperado'];
+
+// Contenido del PDF con estructura renovada
 $html = <<<EOD
-<h1 style="text-align: center;">Factura de Alquiler y Devolución</h1>
-<hr>
-<h2>Datos del Cliente</h2>
-<p><strong>Nombre:</strong> {$data['nombre_usuario']}</p>
-<p><strong>Email:</strong> {$data['email_usuario']}</p>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .invoice-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #000;
+        padding-bottom: 25px;
+        margin-bottom: 50px;
+    }
+    .invoice-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #333;
+    }
+    .invoice-info {
+        text-align: right;
+        font-size: 16px;
+        color: #666;
+    }
+    .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-bottom: 3px solid #000;
+        padding-bottom: 10px;
+        color: #333;
+    }
+    .invoice-table {
+        width: 100%;
+        font-size: 16px;
+        border-collapse: collapse;
+        margin-bottom: 50px;
+    }
+    .invoice-table td {
+        padding: 18px 15px;
+        vertical-align: top;
+        border-bottom: 2px solid #ddd;
+    }
+    .invoice-table td strong {
+        font-weight: bold;
+        color: #333;
+    }
+    .centered {
+        text-align: center;
+        font-size: 16px;
+        color: #666;
+        margin-top: 35px;
+    }
+    .total-row td {
+        font-weight: bold;
+        color: #000;
+    }
+</style>
 
-<h2>Datos del Vehículo</h2>
-<p><strong>Matrícula:</strong> {$data['matricula']}</p>
-<p><strong>Marca:</strong> {$data['marca']}</p>
-<p><strong>Modelo:</strong> {$data['modelo']}</p>
-<p><strong>Color:</strong> {$data['color']}</p>
+<div class="invoice-container">
+    <table class="invoice-header">
+        <tr>
+            <td class="invoice-title">FACTURA</td>
+            <td class="invoice-info">
+                <strong>Factura Nº:</strong> {$data['factura_numero']}<br>
+                <strong>Fecha de Emisión:</strong> {$data['fecha_emision']}
+            </td>
+        </tr>
+    </table>
 
-<h2>Detalles del Alquiler</h2>
-<p><strong>Fecha de Inicio:</strong> {$data['fecha_inicio']}</p>
-<p><strong>Fecha de Fin:</strong> {$data['fecha_fin']}</p>
-<p><strong>Estado del Alquiler:</strong> {$data['estado_alquiler']}</p>
-<p><strong>Monto Esperado:</strong> \$ {$data['monto_esperado']}</p>
+    <div class="section-title">Datos del Cliente</div>
+    <table class="invoice-table">
+        <tr>
+            <td><strong>Nombre:</strong> {$data['nombre_usuario']}</td>
+            <td><strong>Email:</strong> {$data['email_usuario']}</td>
+        </tr>
+    </table>
 
-<h2>Detalles de la Devolución</h2>
-<p><strong>Fecha de Devolución:</strong> {$data['fecha_devolucion']}</p>
-<p><strong>Estado del Vehículo:</strong> {$data['estado_vehiculo']}</p>
-<p><strong>Nivel de Combustible:</strong> {$data['nivel_combustible']}</p>
-<p><strong>Limpieza:</strong> {$data['limpieza']}</p>
-<p><strong>Daños Visibles:</strong> {$data['daños_visibles']}</p>
-<p><strong>Costos Adicionales:</strong> \$ {$data['cargos_adicionales']}</p>
-<p><strong>Costo Total:</strong> \$ {$data['costo_total']}</p>
-<p><strong>Observaciones:</strong> {$data['observaciones']}</p>
+    <div class="section-title">Datos del Vehículo</div>
+    <table class="invoice-table">
+        <tr>
+            <td><strong>Matrícula:</strong> {$data['matricula']}</td>
+            <td><strong>Marca:</strong> {$data['marca']}</td>
+        </tr>
+        <tr>
+            <td><strong>Modelo:</strong> {$data['modelo']}</td>
+            
+        </tr>
+    </table>
 
-<hr>
-<p style="text-align: center;">Gracias por utilizar nuestros servicios</p>
+    <div class="section-title">Detalles del Alquiler</div>
+    <table class="invoice-table">
+        <tr>
+            <td><strong>Fecha de Alquiler:</strong> {$data['fecha_inicio']}</td>
+            <td><strong>Fecha de Finalización:</strong> {$data['fecha_fin']}</td>
+        </tr>
+        <tr>
+            <td><strong>Alquiler:</strong> {$data['estado_alquiler']}</td>
+             <td><strong>Monto:</strong> \$ {$totalAmount2}</td>
+        </tr>
+    </table>
+
+    <div class="section-title">Detalles de la Devolución</div>
+    <table class="invoice-table">
+        <tr>
+            <td><strong>Fecha de Devolución:</strong> {$data['fecha_devolucion']}</td>
+            <td><strong>Estado del Vehículo:</strong> {$data['estado_vehiculo']}</td>
+        </tr>
+        <tr>
+            <td><strong>Lavado:</strong> {$data['limpieza']}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Daños:</strong> {$data['daños_visibles']}</td>
+        </tr>
+    </table>
+
+    <div class="section-title">Costos y Observaciones</div>
+    <table class="invoice-table">
+        <tr>
+            <td><strong>Costos Adicionales:</strong> \$ {$additionalAmount}</td>
+            <td><strong>Costo Total:</strong> \$ {$data['monto_esperado']}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Observaciones:</strong> {$data['observaciones']}</td>
+        </tr>
+    </table>
+
+    <div class="total-row">
+        <table class="invoice-table">
+            <tr>
+                <td><strong>Total a Pagar:</strong> \$ {$totalAmount}</td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+</div>
 EOD;
+
+
 
 $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->Output("Factura_Alquiler_Devolucion_{$devolucion_id}.pdf", 'D'); // Forzar descarga
