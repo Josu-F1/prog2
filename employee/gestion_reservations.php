@@ -66,9 +66,9 @@ if ($result->num_rows > 0) {
     }
 
     .tittle-p {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: bold;
-        color: #343a40;
+        color:rgb(255, 255, 255);
         margin-top: 20px;
     }
 
@@ -78,6 +78,26 @@ if ($result->num_rows > 0) {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 20px;
     }
+    .card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
 
     .table {
         font-size: 0.9rem;
@@ -100,7 +120,7 @@ if ($result->num_rows > 0) {
       --bs-table-bg: none !important;
     }
     .table thead {        
-        background: linear-gradient(90deg, #6a11cb, #2575fc);
+        background: linear-gradient(90deg, #6a11cb,rgb(11, 12, 15));
         color: white ;        
         font-size: 1rem;
     }
@@ -153,7 +173,7 @@ if ($result->num_rows > 0) {
     }
 
     .btn-warning {
-        background-color: #f1c40f;
+        background-color:rgb(0, 95, 204);
         color: white;
         border: none;
     }
@@ -175,13 +195,13 @@ if ($result->num_rows > 0) {
     }
 
     .btn-primary {
-        background-color: #3498db;
+        background-color:rgb(25, 29, 31);
         color: white;
         border: none;
     }
 
     .btn-primary:hover {
-        background-color: #2980b9;
+        background-color:rgb(20, 28, 33);
         transform: scale(1.05);
     }
 
@@ -250,57 +270,38 @@ if ($result->num_rows > 0) {
             <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
                 <h1 class="tittle-p">Gestion de reservas</h1>
                 <div id="alerta2" class="alert d-none" role="alert"></div>
-                <table class="table table-striped mt-4">
-                    <thead>
-                        <th>Cliente</th>
-                        <th>Imagen Vehiculo</th>
-                        <th>Matricula</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>  
-                        <th>Tarifa <br>(por hora)</th>
-                        <th>Monto esperado</th>                                                                                              
-                        <th>Acciones</th>
-                        <th></th>
-                        <th></th>
-                    </thead>
-                    <tbody id="tablaRents">
-                        <?php foreach ($data as $rent): ?>
-                            <tr id="rent-<?php echo $rent['id'] ?>">
-                              <th class="nombre"><?php echo $rent['nombre_usuario'] ?></th>
-                                <th>
-                                    <img src="../images/autos/<?php echo htmlspecialchars($rent['imagen'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        alt="Imagen de <?php echo $rent['modelo']; ?>"
-                                        style="width: 100px; height: auto; border-radius: 5px;">
-                                </th>
-                                <th class="matricula"><?php echo $rent['matricula'] ?></th>
-                                <th class="marca"><?php echo $rent['marca'] ?></th>
-                                <th class="modelo"><?php echo $rent['modelo'] ?></th>
-                                <th class="fecha_inicio"><?php echo $rent['fecha_inicio'] ?></th>
-                                <th class="fecha_fin"><?php echo $rent['fecha_fin'] ?></th>                                 
-                                <th class="tarifa"><?php echo $rent['tarifa'] ?></th>
-                                <th class="monto_esperado"><?php echo $rent['monto_esperado'] ?></th>
-                                <th>
-                                    <button class="btn btn-warning btn-sm editar"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModalRent"
-                                        data-id="<?php echo $rent['id']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_fin']; ?>"
-                                        data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
-                                        data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Aprobar
-                                    </button>
-                                </th>                                                               
-                                <th><button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">Desaprobar</button></th>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>               
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+    <?php foreach ($data as $rent): ?>
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-dark">Cliente: <?php echo $rent['nombre_usuario']; ?></h5>
+                    <p class="card-text">
+                        <strong>Matricula:</strong> <?php echo $rent['matricula']; ?><br>
+                        <strong>Marca:</strong> <?php echo $rent['marca']; ?><br>
+                        <strong>Modelo:</strong> <?php echo $rent['modelo']; ?><br>
+                        <strong>Fecha Inicio:</strong> <?php echo $rent['fecha_inicio']; ?><br>
+                        <strong>Fecha Fin:</strong> <?php echo $rent['fecha_fin']; ?><br>
+                        <strong>Tarifa:</strong> $<?php echo $rent['tarifa']; ?> / hora<br>
+                        <strong>Monto esperado:</strong> $<?php echo $rent['monto_esperado']; ?><br>
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-warning btn-sm editar"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModalRent"
+                            data-id="<?php echo $rent['id']; ?>">
+                            Aprobar
+                        </button>
+                        <button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">
+                            Desaprobar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+               
             </main>
         </div>
     </div>
@@ -327,7 +328,7 @@ if ($result->num_rows > 0) {
 </div>
 
 
-    <?php include '../util/footer.html'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

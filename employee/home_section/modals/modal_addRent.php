@@ -37,23 +37,22 @@ if ($resultv->num_rows > 0) {
 
 <div class="modal fade" id="addRentModal" tabindex="-1" aria-labelledby="addRentModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content" style="background-color: white; color: black;">
+      <div class="modal-header" style="background-color: white; color: black;">
         <h5 class="modal-title" id="addRentModalLabel">Agregar Nuevo Alquiler</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
       </div>
-      <div class="modal-body d-flex">
+      <div class="modal-body">
         <!-- Formulario principal -->
-        <form id="formAddRent" class="w-50">
-        <div class="mb-3">
-  <label for="fecha_inicio_1" class="form-label">Fecha y Hora Inicio</label>
-  <input type="text" class="form-control fecha_inicio" id="fecha_inicio_1" name="fecha_inicio_1" required>
-</div>
-<div class="mb-3">
-  <label for="fecha_fin_1" class="form-label">Fecha y Hora Fin</label>
-  <input type="text" class="form-control fecha_fin" id="fecha_fin_1" name="fecha_fin_1" required>
-</div>
-
+        <form id="formAddRent" class="w-100 mb-4">
+          <div class="mb-3">
+            <label for="fecha_inicio_1" class="form-label">Fecha y Hora Inicio</label>
+            <input type="text" class="form-control fecha_inicio" id="fecha_inicio_1" name="fecha_inicio_1" required>
+          </div>
+          <div class="mb-3">
+            <label for="fecha_fin_1" class="form-label">Fecha y Hora Fin</label>
+            <input type="text" class="form-control fecha_fin" id="fecha_fin_1" name="fecha_fin_1" required>
+          </div>
 
           <div class="mb-3">
             <label for="nombre_usuario" class="form-label">Nombre Usuario</label>
@@ -65,14 +64,14 @@ if ($resultv->num_rows > 0) {
           </div>
           <input type="hidden" id="matricula_vehiculo" name="matricula_vehiculo" required>
           <p id="selectedVehicle" class="text-success"></p>
-          <button type="submit" class="btn btn-primary" id="submitRentButton" disabled>Agregar Alquiler</button>
+          <button type="submit" class="btn btn-dark" id="submitRentButton" disabled>Agregar Alquiler</button>
         </form>
+
         <!-- Lista de vehículos con búsqueda y selección -->
-        <div class="w-50 ms-3">
+        <div class="w-100">
           <label for="searchVehicle" class="form-label">Buscar Vehículo</label>
           <div class="input-group mb-3">
             <input type="text" id="searchVehicle" class="form-control" placeholder="Buscar por matrícula, marca o modelo">
-            <!--<button class="btn btn-outline-secondary" id="searchButton" type="button">Buscar</button>-->
           </div>
           <ul id="vehicleList" class="list-group overflow-auto" style="max-height: 300px;">
             <?php foreach ($datavehicles as $vehicle): ?>
@@ -81,7 +80,7 @@ if ($resultv->num_rows > 0) {
                 data-marca="<?php echo strtolower($vehicle['marca']); ?>"
                 data-modelo="<?php echo strtolower($vehicle['modelo']); ?>"
                 data-matricula="<?php echo strtolower($vehicle['matricula']); ?>"
-                onclick="selectVehicle('<?php echo $vehicle['id']; ?>', '<?php echo $vehicle['marca']; ?>', '<?php echo $vehicle['modelo']; ?>', '<?php echo $vehicle['matricula']; ?>')">
+                onclick="selectVehicle('<?php echo $vehicle['id']; ?>', '<?php echo $vehicle['marca']; ?>', '<?php echo $vehicle['modelo']; ?>', '<?php echo $vehicle['matricula']; ?>', this)">
                 <img src="../images/autos/<?php echo $vehicle['imagen']; ?>" alt="Imagen de <?php echo $vehicle['marca']; ?>" class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
                 <div>
                   <strong><?php echo $vehicle['marca']; ?> - <?php echo $vehicle['modelo']; ?></strong><br>
@@ -96,21 +95,13 @@ if ($resultv->num_rows > 0) {
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-            <!--MODAL ELIMINAR RENTA-->
+<!--MODAL ELIMINAR RENTA-->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content" style="background-color: white; color: black;">
+      <div class="modal-header" style="background-color: white; color: black;">
         <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
       </div>
       <div class="modal-body">
         ¿Estás seguro de que deseas eliminar este alquiler?
@@ -123,3 +114,38 @@ if ($resultv->num_rows > 0) {
   </div>
 </div>
 
+<script>
+  function selectVehicle(id, marca, modelo, matricula, element) {
+    // Desmarcar todos los elementos
+    const vehicles = document.querySelectorAll('.vehicle-item');
+    vehicles.forEach(function (vehicle) {
+      vehicle.classList.remove('selected');
+    });
+
+    // Resaltar el vehículo seleccionado
+    element.classList.add('selected');
+
+    // Mostrar la matrícula y habilitar el botón de agregar alquiler
+    document.getElementById('matricula_vehiculo').value = matricula;
+    document.getElementById('selectedVehicle').innerText = "Vehículo Seleccionado: " + marca + " " + modelo;
+    document.getElementById('submitRentButton').disabled = false;
+  }
+
+  // Filtrar vehículos según búsqueda
+  document.getElementById('searchVehicle').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const vehicles = document.querySelectorAll('.vehicle-item');
+
+    vehicles.forEach(function(vehicle) {
+      const marca = vehicle.getAttribute('data-marca');
+      const modelo = vehicle.getAttribute('data-modelo');
+      const matricula = vehicle.getAttribute('data-matricula');
+      
+      if (marca.includes(query) || modelo.includes(query) || matricula.includes(query)) {
+        vehicle.style.display = 'flex';
+      } else {
+        vehicle.style.display = 'none';
+      }
+    });
+  });
+</script>

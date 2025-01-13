@@ -64,9 +64,9 @@ if ($result->num_rows > 0) {
     }
 
     .tittle-p {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: bold;
-        color: #343a40;
+        color:rgb(255, 255, 255);
         margin-top: 20px;
     }
 
@@ -151,14 +151,14 @@ if ($result->num_rows > 0) {
     }
 
     .btn-warning {
-        background-color: #f1c40f;
-        color: white;
-        border: none;
+      background-color: #4a4a4a; /* Gris oscuro */
+    color: white; /* Letras blancas */
+    border: none;
     }
 
     .btn-warning:hover {
-        background-color: #e67e22;
-        transform: scale(1.05);
+      background-color: #3a3a3a; /* Gris más oscuro al pasar el mouse */
+      transform: scale(1.05);
     }
 
     .btn-danger {
@@ -206,11 +206,14 @@ if ($result->num_rows > 0) {
         .table tbody tr {
             display: block;
             margin-bottom: 16px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(229, 217, 217, 0.1);
             border-radius: 10px;
             overflow: hidden;
         }
 
+        .btn-dark {
+    margin-bottom: 50; /* Ajusta el valor según lo necesites */
+} 
         .table tbody tr td {
             display: flex;
             justify-content: space-between;
@@ -242,78 +245,63 @@ if ($result->num_rows > 0) {
 
     ?>
 
-    <div class="container-fluid vh-100 d-flex flex-column overflow-hidden">
-        <div class="row flex-grow-1 ">
-            <?php
-            include './home_section/scripts/menu.php'
-            ?>
-            <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
-                <h1 class="tittle-p">Gestion de alquileres</h1>
-                <div id="alerta2" class="alert d-none" role="alert"></div>
-                <table class="table table-striped mt-4">
-                    <thead>
-                        <th>Cliente</th>
-                        <th>Imagen Vehiculo</th>
-                        <th>Matricula</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>  
-                        <th>Tarifa <br>(por hora)</th>
-                        <th>Monto esperado</th>                                                                      
-                        <th>Contrato</th>
-                        <th>Acciones</th>
-                        <th></th>
-                        <th></th>
-                    </thead>
-                    <tbody id="tablaRents">
-                        <?php foreach ($data as $rent): ?>
-                            <tr id="rent-<?php echo $rent['id'] ?>">
-                              <th class="nombre"><?php echo $rent['nombre_usuario'] ?></th>
-                                <th>
-                                    <img src="../images/autos/<?php echo htmlspecialchars($rent['imagen'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        alt="Imagen de <?php echo $rent['modelo']; ?>"
-                                        style="width: 100px; height: auto; border-radius: 5px;">
-                                </th>
-                                <th class="matricula"><?php echo $rent['matricula'] ?></th>
-                                <th class="marca"><?php echo $rent['marca'] ?></th>
-                                <th class="modelo"><?php echo $rent['modelo'] ?></th>
-                                <th class="fecha_inicio"><?php echo $rent['fecha_inicio'] ?></th>
-                                <th class="fecha_fin"><?php echo $rent['fecha_fin'] ?></th>                                 
-                                <th class="tarifa"><?php echo $rent['tarifa'] ?></th>
-                                <th class="monto_esperado"><?php echo $rent['monto_esperado'] ?></th>
-                                
-
-                                <th>
-                                    <button class="btn btn-warning btn-sm"
-                                        data-bs-toggle="modal"
+<div class="container-fluid vh-100 d-flex flex-column overflow-hidden">
+    <div class="row flex-grow-1">
+        <?php
+        include './home_section/scripts/menu.php'
+        ?>
+        <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
+            <h1 class="tittle-p">Gestion de alquileres</h1>
+            <div id="alerta2" class="alert d-none" role="alert"></div>
+            <div class="text-center mt-3">
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addRentModal">Nuevo Alquiler</button>
+            </div>
+            <!-- Contenedor con scroll para las tarjetas -->
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="cardsContainer" style="max-height: calc(100vh - 150px); overflow-y: auto;">
+                <?php foreach ($data as $rent): ?>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="../images/autos/<?php echo htmlspecialchars($rent['imagen'], ENT_QUOTES, 'UTF-8'); ?>" 
+                                 class="card-img-top" 
+                                 alt="Imagen de <?php echo $rent['modelo']; ?>" 
+                                 style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $rent['marca'] . " " . $rent['modelo']; ?></h5>
+                                <p class="card-text">
+                                    <strong>Cliente:</strong> <?php echo $rent['nombre_usuario']; ?><br>
+                                    <strong>Matricula:</strong> <?php echo $rent['matricula']; ?><br>
+                                    <strong>Tarifa:</strong> $<?php echo $rent['tarifa']; ?> por hora<br>
+                                    <strong>Fecha Inicio:</strong> <?php echo $rent['fecha_inicio']; ?><br>
+                                    <strong>Fecha Fin:</strong> <?php echo $rent['fecha_fin']; ?><br>
+                                    <strong>Monto esperado:</strong> $<?php echo $rent['monto_esperado']; ?>
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <button class="btn btn-warning btn-sm" 
+                                        data-bs-toggle="modal" 
                                         data-bs-target="#contratoModal"
                                         data-id="<?php echo $rent['id']; ?>"
                                         data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_fin']; ?>"
+                                        data-fechaFin="<?php echo $rent['fecha_fin']; ?>"
                                         data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
                                         data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Ver Contrato
-                                    </button>
-                                </th>
-                                <th>
-                                    <button class="btn btn-warning btn-sm editar"
+                                    Ver Contrato
+                                </button>
+                                <button class="btn btn-warning btn-sm editar"
                                         data-bs-toggle="modal"
                                         data-bs-target="#editModalRent"
                                         data-id="<?php echo $rent['id']; ?>"
                                         data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_fin']; ?>"
+                                        data-fechaFin="<?php echo $rent['fecha_fin']; ?>"
                                         data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
                                         data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Editar usuario y vehiculo
-                                    </button>
-                                </th>
-                                <th>
-                                    <button class="btn btn-warning btn-sm editar"
+                                    Editar usuario y vehiculo
+                                </button>
+                                <button class="btn btn-warning btn-sm editar"
                                         data-bs-toggle="modal"
                                         data-bs-target="#editFechaF"
                                         data-id="<?php echo $rent['id']; ?>"
@@ -324,35 +312,30 @@ if ($result->num_rows > 0) {
                                         data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Editar fechas
-                                    </button>
-                                </th>
-                                <th><button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">Eliminar</button></th>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                    Editar fechas
+                                </button>
+                                <button class="btn btn-danger btn-sm eliminar" 
+                                        data-id="<?php echo $rent['id']; ?>">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
-                <div class="text-center mt-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRentModal">Agregar Alquiler</button>
-                </div>
-            </main>
-        </div>
+
+        </main>
     </div>
-
-
-
-
+</div>
 
     <div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalErrorLabel">Error de Fecha</h5>
+        <h5 class="modal-title" id="modalErrorLabel" style="color: black;">Fechas incorrectas</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        La fecha de inicio y la fecha de fin deben estar separadas por al menos 1 minuto.
+      <div class="modal-body" style="color: black;">
+       No es un rango de fechas valido
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -362,7 +345,6 @@ if ($result->num_rows > 0) {
 </div>
 
 
-    <?php include '../util/footer.html'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -547,7 +529,7 @@ function selectVehicle(vehicleId, marca, modelo, matricula) {
 document.getElementById('searchVehicle').addEventListener('input', function () {
   const query = this.value.trim();
 
-  fetch(`buscarVehiculos.php?query=${encodeURIComponent(query)}`)
+  fetch(buscarVehiculos.php?query=${encodeURIComponent(query)})
   .then(response => response.json())
   .then(data => {
     const listContainer = document.getElementById('vehicleList');

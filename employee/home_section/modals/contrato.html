@@ -1,17 +1,22 @@
 <div class="modal fade" id="contratoModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">CONTRATO</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editForm">            
-            <div class="mb-3">            
-              <label class="form-label">El auto con la matricula<b id="matriculaC"></b> fue alquilado por <b id="nombreC"></b> el <b id="fechaI"></b></label>              
-            </div>            
-          </form>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 shadow-sm">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fs-5 text-dark" id="editModalLabel">
+          <i class="bi bi-file-earmark-text"></i> Contrato de Alquiler
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editForm">
+          <div class="mb-4">
+            <label class="form-label fs-6 text-muted">Detalles del Contrato</label>
+            <p class="fs-6 text-dark">
+              El auto con la matrícula <b id="matriculaC"></b> fue alquilado por <b id="nombreC"></b> el <b id="fechaI"></b>.
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>

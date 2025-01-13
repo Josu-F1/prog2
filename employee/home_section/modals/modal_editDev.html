@@ -1,55 +1,57 @@
 <div class="modal fade" id="editModalRent" tabindex="-1" aria-labelledby="addRentModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="addRentModalLabel">Editar Alquiler</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <form id="formeEditDev">
-                  <!-- Monto Tarifa -->                
-
-                  <!-- Descripción Devolución -->
-                  <div class="mb-3">
-                      <label for="descripcion_devolucion" class="form-label">Descripción Devolución</label>
-                      <input type="text" class="form-control" id="descripcion_devolucion" name="descripcion_devolucion" required>
-                  </div>
-
-                  <!-- Fecha Devolución -->
-                  <div class="mb-3">
-                      <label for="fecha_devolucion" class="form-label">Fecha Devolución</label>
-                      <input type="date" class="form-control" id="fecha_devolucion" name="fecha_devolucion">
-                  </div>
-
-                  <!-- Devuelto -->
-                  <div class="mb-3">
-                      <label for="devuelto" class="form-label">¿Vehículo Devuelto?</label>
-                      <select class="form-select" id="devuelto" name="devuelto" required>
-                          <option value="si">Sí</option>
-                          <option value="no">No</option>
-                      </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="metodo_pago" class="form-label">Metodo de Pago</label>
-                    <select class="form-select" id="metodo_pago" name="metodo_pago" required>
-                        <option value="tarjeta">Tarjeta</option>
-                        <option value="efectivo">Efectivo</option>
-                    </select>
-                </div>
-
-                  <!-- Cargos Extra -->
-                  <div class="mb-3">
-                      <label for="cargos_extra" class="form-label">Cargos Extra</label>
-                      <input type="number" class="form-control" id="cargos_extra" name="cargos_extra" step="0.01" value="0.00" required>
-                  </div>                  
-
-                  <!-- Hidden Input para Alquiler ID -->
-                  <input type="hidden" id="editRentID" name="editRentID">
-
-                  <!-- Botón de envío -->
-                  <button type="submit" class="btn btn-primary">Editar Devolución</button>
-              </form>
-          </div>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-3 shadow-sm">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fs-5 text-dark" id="addRentModalLabel">
+            <i class="bi bi-pencil-square"></i> Editar Alquiler
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formeEditDev">
+            <!-- Descripción Devolución -->
+            <div class="mb-4">
+              <label for="descripcion_devolucion" class="form-label fs-6 text-muted">Descripción Devolución</label>
+              <input type="text" class="form-control" id="descripcion_devolucion" name="descripcion_devolucion" required>
+            </div>
+  
+            <!-- Fecha Devolución -->
+            <div class="mb-4">
+              <label for="fecha_devolucion" class="form-label fs-6 text-muted">Fecha Devolución</label>
+              <input type="date" class="form-control" id="fecha_devolucion" name="fecha_devolucion">
+            </div>
+  
+            <!-- Devuelto -->
+            <div class="mb-4">
+              <label for="devuelto" class="form-label fs-6 text-muted">¿Vehículo Devuelto?</label>
+              <select class="form-select" id="devuelto" name="devuelto" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+  
+            <!-- Metodo de Pago -->
+            <div class="mb-4">
+              <label for="metodo_pago" class="form-label fs-6 text-muted">Método de Pago</label>
+              <select class="form-select" id="metodo_pago" name="metodo_pago" required>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="efectivo">Efectivo</option>
+              </select>
+            </div>
+  
+            <!-- Cargos Extra -->
+            <div class="mb-4">
+              <label for="cargos_extra" class="form-label fs-6 text-muted">Cargos Extra</label>
+              <input type="number" class="form-control" id="cargos_extra" name="cargos_extra" step="0.01" value="0.00" required>
+            </div>
+  
+            <!-- Hidden Input para Alquiler ID -->
+            <input type="hidden" id="editRentID" name="editRentID">
+  
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn-primary w-100">Editar Devolución</button>
+          </form>
+        </div>
       </div>
+    </div>
   </div>
-</div>
